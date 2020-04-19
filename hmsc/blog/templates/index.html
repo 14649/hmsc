@@ -1,0 +1,44 @@
+<html lang="zh">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop</title>
+    {% endblock %}
+</head>
+<body>
+    
+    <!-- flash消息 -->
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}">首页</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li>
+                <a href="{{ url_for('login') }}">登录</a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">退出</a>
+            </li>
+            <li>
+                <a href="{{ url_for('settings') }}">设置</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{ url_for('login') }}">登录</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <small>&copy;2020 &nbsp;&nbsp;&nbsp; <a href="#">1903c</a></small>
+    </footer>
+    
+</body>
+</html>
